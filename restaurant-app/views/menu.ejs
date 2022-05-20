@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+    <form action="/order/add" method="post">
+
+        <h1>Order Menu</h1>
+        <h2><%= order_nbr %></h2>
+        <h3><%= order_prefix %></h3>
+        <div class="row">
+            <div class="col col1">
+                <h2>Meat Dishes</h2>
+
+                <ul>
+                    <li>
+                        <label for="">
+                            <input type="checkbox" name="meat_dish" id="meat_dish" value="Oxtail & Beans">Oxtail & Beans
+                        </label>
+                    </li>
+
+                    <li>
+                        <label for="">
+                            <input type="checkbox" name="meat_dish" id="meat_dish" value="Curry Goat">Curry Goat
+                        </label>
+                    </li>
+
+                    <li>
+                        <label for="">
+                            <input type="checkbox" name="meat_dish" id="meat_dish" value="Fried Chicken">Fried Chicken
+                        </label>
+                    </li>
+
+                    <li>
+                        <label for="">
+                            <input type="checkbox" name="meat_dish" id="meat_dish" value="Jerk Chicken">Jerk Chicken
+                        </label>
+                    </li>
+
+                    <li>
+                        <label for="">
+                            <input type="checkbox" name="meat_dish" id="" value="Curry Chicken">Curry Chicken
+                        </label>
+                    </li>
+
+                    <li>
+                        <label for="">
+                            <input type="checkbox" name="meat_dish" id="meat_dish" value="Stew Chicken">Stew Chicken
+                        </label>
+                    </li>
+
+                    <li>
+                        <label for="">
+                            <input type="checkbox" name="meat_dish" id="meat_dish" value="Steam Fish">Steam Fish
+                        </label>
+                    </li>
+
+                    <li>
+                        <label for="">
+                            <input type="checkbox" name="meat_dish" id="meat_dish" value="Garlic Butter Shrimp">Garlic Butter Shrimp
+                        </label>
+                    </li>
+
+                    <li>
+                        <label for="">
+                            <input type="checkbox" name="meat_dish" id="meat_dish" value="Bake Chicken">Bake Chicken
+                        </label>
+                    </li>
+                </ul>
+            </div>
+            
+            <div class="col col2">
+                <h2>Type of Rice</h2>
+
+                <ul>
+                    <li>
+                        <label for="">
+                            <input type="checkbox" name="starch" id="starch" value="Rice & Peas">Rice & Peas
+                        </label>
+                    </li>
+
+                    <li>
+                        <label for="">
+                            <input type="checkbox" name="starch" id="starch" value="Pumpkin Rice">Pumpkin Rice
+                        </label>
+                    </li>
+
+                    <li>
+                        <label for="">
+                            <input type="checkbox" name="starch" id="starch" value="Fried Rice">Fried Rice
+                        </label>
+                    </li>
+
+                    <li>
+                        <label for="">
+                            <input type="checkbox" name="starch" id="starch" value="season Rice">Season Rice
+                        </label>
+                    </li>
+
+                    <li>
+                        <label for="">
+                            <input type="checkbox" name="starch" id="starch" value="White Rice">White Rice
+                        </label>
+                    </li>
+                </ul>
+
+                <h2>Other</h2>
+
+                <ul>
+                    <li>
+                        <label for="">
+                            <input type="checkbox" name="special" id="special" value="Boiled Food">Boiled Food
+                        </label>
+                    </li>
+
+                    <li>
+                        <label for="">
+                            <input type="checkbox" name="special" id="special" value="Noodles">Noodles
+                        </label>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="row">
+                <div class="col col3">
+
+                    <h2>Desserts</h2>
+                    <ul>
+                        <li>
+                            <label for="">
+                                <input type="checkbox" name="dessert" id="dessert" value="Cookie & Cream Cake">Cookie & Cream Cake
+                            </label>
+                        </li>
+                        <li>
+                            <label for="">
+                                <input type="checkbox" name="dessert" id="dessert" value="Chocolate Cake">Chocolate Cake
+                            </label>
+                        </li>
+                        <li>
+                            <label for="">
+                                <input type="checkbox" name="dessert" id="dessert" value="Apple Pie">Apple Pie
+                            </label>
+                        </li>
+                    </ul>
+                </div>
+                <div class="col col4">
+
+                    <h2>Beverages</h2>
+                    <ul>
+                        <li>
+                            <label for="">
+                                <input type="checkbox" name="drinks" id="drinks" value="Pina Colada">Pina Co lada
+                            </label>
+                        </li>
+                        <li>
+                            <label for="">
+                                <input type="checkbox" name="drinks" id="drinks" value="Spirit">Spirit
+                            </label>
+                        </li>
+                        <li>
+                            <label for="">
+                                <input type="checkbox" name="drinks" id="drinks" value="Herbal Tea">Herbal Tea
+                            </label>
+                        </li>
+                        <li>
+                            <label for="">
+                                <input type="checkbox" name="drinks" id="drinks" value="Soft Drink">Soft Drink
+                            </label>
+                        </li>
+                        <li>
+                            <label for="">
+                                <input type="checkbox" name="drinks" id="drinks" value="Bottle Water">Bottle Water
+                            </label>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <label for="">Payment Method</label>
+        <input type="radio" name="payment" value="Card">Card
+
+        <input type="radio" name="payment" value="Cash">Cash
+        
+        <br>
+        <pre></pre>
+
+        <a href="/confirm-order"><button>Place Your Order</button></a>
+    </form>
+</body>
+</html>

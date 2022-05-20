@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+    <%- include('nav.ejs') %>
+
+    <a href="/logout"><button type="submit">Logout</button></a>
+
+    <form action="/orders-view" method="post" class="form">
+
+        <h1>Customer Orders</h1>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>Order Number</th>
+                    <th>Meat Dish</th>
+                    <th>Starch</th>
+                    <th>Special</th>
+                    <th>Dessert</th>
+                    <th>Beverages</th>
+                    <th>Payment</th>
+                    <th>Confirm Order</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                <% if(order.length) { for(var i = 0; i< order.length; i++) {%>
+                    <tr>
+                        <td><%= order[i].id %></td>
+                        <td><%= order[i].meat_dish %></td>
+                        <td><%= order[i].rice_type %></td>
+                        <td><%= order[i].other %></td>
+                        <td><%= order[i].dessert %></td>
+                        <td><%= order[i].drinks %></td>
+                        <td><%= order[i].payment %></td>
+                        <td>
+                            <a href="/projects-edit/edit/<%=order[i].id%>" class="confirm">Confirm</a>
+                            <a href="/projects-delete/delete/<%=order[i].id%>" class="delete">Delete</a>
+                        </td>
+                    </tr>
+                <% }
+                    
+                }else{ %>
+                    <tr>
+                        <td colspan="3">No Orders</td>
+                    </tr>
+                <% } %>
+            </tbody>
+        </table>
+
+    </form>
+</body>
+</html>
