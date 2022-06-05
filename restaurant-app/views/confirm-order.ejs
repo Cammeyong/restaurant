@@ -10,7 +10,7 @@
     <form action="/confirm-order" method="post">
         <h1></h1>
 
-        <label for="">Meat Dish<span> *</span>
+        <label for="">Meat Dish
     
             <br>
 
@@ -18,15 +18,18 @@
         </label>
 
         <br>
+        <label for="">starch</label>
         <input type="text" name="starch" id="starch" value="<%= edit_order.starch  %> ">
 
         <br>
+        <label for="">Special</label>
         <input type="text" name="special" id="special" value="<%= edit_order.special %> ">
         <br>
-
+        <label for="">Dessert</label>
         <input type="text" name="dessert" id="dessert" value="<%= edit_order.dessert  %> ">
         <br>
-        <input type="text" name="payment" id="payment" value="<%= edit_order.payment %> ">
+        <label for="">Payment Method</label>
+        <input type="radio" name="payment" id="payment" value="<%= edit_order.payment %> ">
 
         <p>To confirm your order, please enter your email address below:</p>
         <br>

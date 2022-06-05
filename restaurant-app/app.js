@@ -2,6 +2,7 @@ const mysql = require('mysql');
 const express = require('express');
 const bodyparser = require('body-parser');
 const helperClass = require('./lib/helper');
+const bcrypt = require('bcrypt');
 
 const path = require('path');
 const router = express.Router();
@@ -96,7 +97,7 @@ router.get('/menu', function(req,res){
         // console.log(row[0].key_value);     
          retval = row[0].key_value;
          if(err){
-                callb  \   ack(JSON.stringify(err));
+                callback(JSON.stringify(err));
          }else{
              callback(JSON.stringify(retVal));  
          }
@@ -120,43 +121,47 @@ router.get('/menu', function(req,res){
  
  
 //authenticate user
-router.post('/login', function(req, res, next) {
+router.post('/login', async function(req, res, next) {
        
-    var email = req.body.email;
-    var password = req.body.password;
-    console.log(email,password);
+    try {
+        var email = req.body.email;
+        var password = req.body.password;
+        password= await bcrypt.hash(password, 10);
+        console.log(email,password);
 
-    // conn.query("SELECT * FROM admin WHERE  email = '"+ email  +"' AND BINARY password = '"+ password +"'", function(err, rows, fields) {
+       
+        // conn.query("SELECT * FROM admin WHERE  email = '"+ email  +"' AND BINARY password = '"+ password +"'", function(err, rows, fields) {
+        conn.query('SELECT * FROM restaurantapp.admin WHERE email = ? AND BINARY password = ?', [email, password], function (err, rows, fields) {
 
-    conn.query('SELECT * FROM restaurantapp.admin WHERE email = ? AND BINARY password = ?', [email, password], function(err, rows, fields) {
-        
-        // if login is incorrect or not found
-        console.log(rows.length);
-        if (rows.length <= 0) {
-            
-            req.flash('error', 'Incorrect Email or Password, Please try again!')
-            res.redirect('/login')
-            
-            // throw err
+            // if login is incorrect or not found
+            console.log(rows.length);
+            if (rows.length <= 0) {
+    
+                req.flash('error', 'Incorrect Email or Password, Please try again!');
+                res.redirect('/login');
+                console.log(err)
+    
+            }else { // if login found
+                //Assign session variables based on login credentials                
+                req.session.loggedin = true;
+                req.session.id = rows[0].id;
+                // req.session.first_name = rows[0].frst_nm;
+                // req.session.last_name = rows[0].last_nm;
+                // req.session.is_admin = rows[0].is_admin;
+                console.log(req.session);
+                res.redirect('/orders-view');
+    
+            }
+        })
 
-        }
-        else { // if login found
-            //Assign session variables based on login credentials                
-            req.session.loggedin = true;
-            req.session.id = rows[0].id;
-            // req.session.first_name = rows[0].frst_nm;
-            // req.session.last_name = rows[0].last_nm;
-            // req.session.is_admin = rows[0].is_admin;
-            console.log(req.session);
-            res.redirect('/orders-view');
-
-        }            
-    })
-
+    }catch(err) {
+        console.log(err)
+        res.status(500).send('Something went wrong')
+    }
+    
 
 })
   
- 
 // Logout admin & customer
 router.get('/logout', function (req, res) {
   req.session.destroy();
